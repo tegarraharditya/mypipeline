@@ -9,10 +9,10 @@ node("Node-1") {
         sh('ansible-playbook prepare_all.yml -i /etc/ansible/hosts -l node1 -f 1')
      }
         
-     stage("Unit and Coverage Test"){
-        echo "$WORKSPACE"
+     stage("Unit and Coverage Test"){ 
         sh('gradle -v')
         sh('cd $WORKSPACE/projects/languages/java/gradle/java-gradle-simple')
+        sh('pwd')
         sh('gradle wrapper --gradle-version 2.10')
         sh('./gradlew sonarqube')
      }
