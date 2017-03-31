@@ -11,12 +11,13 @@ node("Node-1") {
         
      stage("Unit and Coverage Test"){ 
         sh('gradle -v')
-        echo '$WORKSPACE'
         dir("$WORKSPACE/projects/languages/java/gradle/java-gradle-simple"){
-           sh '''
-                 'gradle wrapper --gradle-version 2.10'
+           sh 'gradle wrapper --gradle-version 2.10'
+           sh './gradlew sonarqube'
+           //sh '''
+           //      'gradle wrapper --gradle-version 2.10'
                  './gradlew sonarqube'
-              '''
+           //   '''
         }
      }
 
