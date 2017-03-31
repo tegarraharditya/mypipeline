@@ -1,4 +1,4 @@
-node("node-1") {
+node("Node-1") {
      stage "Preparing Repositories"{
         checkout scm
      }
@@ -8,11 +8,18 @@ node("node-1") {
      }
         
      stage "Unit and Coverage Test"{
-        sh('')
+        sh('gradle wrapper --gradle-version 2.10')
+        sh('./gradlew sonarqube')
      }
 
-     stage "Functional Test "{
+     stage "Functional Test"{
         sh ('xvfb-run -a testcafe chrome test.js -')
+     }
+
+     stage "Deploy Service"{
+        echo 'Push to Node-1 instances'
+        echo 'Archive to Current Dir'
+        sh('')
      }
 
 }
