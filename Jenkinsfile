@@ -10,11 +10,14 @@ node("Node-1") {
      }
         
      stage("Unit and Coverage Test"){
+        sh('gradle -v')
+        sh('cd $WORKSPACE/projects/languages/java/gradle/java-gradle-simple')
         sh('gradle wrapper --gradle-version 2.10')
         sh('./gradlew sonarqube')
      }
 
      stage("Functional Test"){
+        sh ('cd $WORKSPACE')
         sh ('xvfb-run -a testcafe chrome test.js -')
      }
 
