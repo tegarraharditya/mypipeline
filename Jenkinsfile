@@ -6,10 +6,11 @@ node("Node-1") {
      }
 
      stage("Preparing Environment"){
-        sh('ansible-playbook prepare_all.yml -i /etc/ansible/hosts -l node2 -f 1')
+        sh('ansible-playbook prepare_all.yml -i /etc/ansible/hosts -l node1 -f 1')
      }
         
      stage("Unit and Coverage Test"){
+        echo "$WORKSPACE"
         sh('gradle -v')
         sh('cd $WORKSPACE/projects/languages/java/gradle/java-gradle-simple')
         sh('gradle wrapper --gradle-version 2.10')
