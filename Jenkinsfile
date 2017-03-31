@@ -11,7 +11,7 @@ node("Node-1") {
         
      stage("Unit and Coverage Test"){ 
         sh('gradle -v')
-        dir('cd $WORKSPACE/projects/languages/java/gradle/java-gradle-simple'){
+        dir('/projects/languages/java/gradle/java-gradle-simple'){
            sh '''
                  'gradle wrapper --gradle-version 2.10'
                  './gradlew sonarqube'
