@@ -1,11 +1,11 @@
 #!/usr/bin/env groovy
 
 node("Node-2") {
- /*
+ 
      stage("Preparing Repositories"){
         checkout scm
      }
-
+/*
      stage("Preparing Environment"){
         sh('ansible-playbook prepare_all.yml -i /etc/ansible/hosts -l node1 -f 1')
      }
