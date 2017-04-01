@@ -1,13 +1,14 @@
 - name: Prepare Environment
   hosts: node1
   tasks:
-    - name: Allow all ansible host to connect
+    - name: Allow given host to connect
       shell: 
            cmd: |
                cat <<EOF
                  docker exec -it myjenkins bash
-                 cat ~/.ssh/id_rsa.pub | ssh tegar.raharditya@10.10.65.210 'cat >> .ssh/authorized_keys'
-                 ssh-keyscan -H -t rsa 10.10.65.210 >> ~/.ssh/known_hosts
+                 ssh-keyscan -H -t rsa "{{host}}" >> ~/.ssh/known_hosts
+                 cat ~/.ssh/id_rsa.pub | ssh tegar.raharditya@"{{host}}" 'cat >> .ssh/authorized_keys'
+                 exit
                EOF
       become: yes
 
