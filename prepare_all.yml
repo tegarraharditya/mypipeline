@@ -9,7 +9,7 @@
                  ssh-keyscan -H -t rsa 192.168.1.7 >> ~/.ssh/known_hosts
                  cat ~/.ssh/id_rsa.pub | ssh tegar.raharditya@192.168.1.7 'cat >> .ssh/authorized_keys'
                EOF
-      become: yes
+      become: true
 
     - name: Check the testcafe installation
       shell: testcafe -v
