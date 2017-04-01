@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 
 node("Node-2") {
+ /*
      stage("Preparing Repositories"){
         checkout scm
      }
@@ -21,11 +22,11 @@ node("Node-2") {
         sh ('cd $WORKSPACE')
         sh ('xvfb-run -a testcafe chrome test.js -')
      }
-
+*/
      stage("Run Service"){
         echo 'Push to Node-1 instances'
         echo 'Archive to Current Dir'
-        archiveArtifacts artifact: '/*', fingerprint: true
+        archiveArtifacts artifact: '/**/*', fingerprint: true
      }
 
 }
