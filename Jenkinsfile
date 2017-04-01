@@ -14,10 +14,6 @@ node("Node-1") {
         dir("$WORKSPACE/projects/languages/java/gradle/java-gradle-simple"){
            sh 'gradle wrapper --gradle-version 2.10'
            sh './gradlew sonarqube'
-           //sh '''
-           //      'gradle wrapper --gradle-version 2.10'
-                 './gradlew sonarqube'
-           //   '''
         }
      }
 
@@ -26,10 +22,10 @@ node("Node-1") {
         sh ('xvfb-run -a testcafe chrome test.js -')
      }
 
-     stage("Deploy Service"){
+     stage("Run Service"){
         echo 'Push to Node-1 instances'
         echo 'Archive to Current Dir'
-        sh('')
+        archiveArtifacts artifact:
      }
 
 }
