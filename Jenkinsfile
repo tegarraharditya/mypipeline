@@ -5,7 +5,7 @@ node("Node-2") {
      stage("Preparing Repositories"){
         checkout scm
      }
-/*
+
      stage("Preparing Environment"){
         sh('ansible-playbook prepare_all.yml -i /etc/ansible/hosts -l node1 -f 1')
      }
@@ -22,7 +22,7 @@ node("Node-2") {
         sh ('cd $WORKSPACE')
         sh ('xvfb-run -a testcafe chrome test.js -')
      }
-*/
+
      stage("Run Service"){
         echo 'Push to Node-1 instances'
         echo 'Archive to Current Dir'
