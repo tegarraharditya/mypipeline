@@ -25,7 +25,7 @@ node("Node-2") {
      stage("Run Service"){
         echo 'Push to Node-1 instances'
         echo 'Archive to Current Dir'
-        archiveArtifacts artifact: '*.*', fingerprint: true
+        archiveArtifacts artifact: '/*', fingerprint: true
      }
 
 }
