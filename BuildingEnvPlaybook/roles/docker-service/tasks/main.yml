@@ -27,15 +27,12 @@
           name: mysonar
           image: sonarqube
           state: started
+          detach: true
           published_ports:
                  - 9000:9000
                  - 9092:9092
           env:
-               SONAR_JDBC_URL: "jdbc:postgresql://172.29.0.1:5432/sonar"
-               SONAR_JDBC_DRIVER: "postgres"
-               SONAR_JDBC_HOST: "172.29.0.1"
-               SONAR_JDBC_PORT: "5432"
-               SONAR_JDBC_USER: "sonar"
-               SONAR_JDBC_PASS: "sonar123.,"
-               SONAR_JDBC_DB: "sonar"
+               SONARQUBE_JDBC_URL: "jdbc:postgresql://172.29.0.1:5432/sonar"
+               SONARQUBE_JDBC_USERNAME: "sonar"
+               SONARQUBE_JDBC_PASSWORD: "sonar123.,"
       become: true
