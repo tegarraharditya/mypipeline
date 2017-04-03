@@ -7,4 +7,9 @@ public class GreetingTest {
   public void test() {
     new Greeting().coveredByUnitTest();
   }
+
+  @Test
+  public void testlagi(){
+   new Greeting().notCoveredByUnitTest();
+  }
 }
