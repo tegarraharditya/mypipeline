@@ -1,0 +1,39 @@
+---
+    - name: Make sure docker is running
+      service:
+         name: docker
+         state: started
+
+    - name: pull an image
+      docker_image:
+         name: postgres
+         tag: latest
+  
+    - name: Launch the docker container sonar postgresql
+      docker_container:
+          name: sonarpostdb
+          image: postgres
+          state: started
+          published_ports: 
+                 - 5432:5432
+          env:
+               POSTGRES_USER: sonar 
+               POSTGRES_PASSWORD: sonar123., 
+               POSTGRES_DB: sonar
+      become: true
+
+    - name: Launch the docker container mysonar
+      docker_container:
+          name: mysonar
+          image: sonarqube
+          state: started
+          published_ports:
+                 - 9000:9000
+                 - 9092:9092
+          env:
+               SONAR_JDBC_HOST: "172.29.0.1"
+               SONAR_JDBC_PORT: "5432"
+               SONAR_JDBC_USER: "sonar"
+               SONAR_JDBC_PASS: "sonar123.,"
+               SONAR_JDBC_DB: "sonar"
+      become: true

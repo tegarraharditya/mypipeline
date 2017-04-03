@@ -1,0 +1,11 @@
+ - name: Check the testcafe installation
+   shell: testcafe -v
+   ignore_errors: True
+   register: installed_testcafe
+    
+ - debug: var=installed_testcafe.stderr
+
+ - name: Install testcafe
+   shell: npm install -g testcafe
+   when: "'not found' in installed_testcafe.stderr"
+   become: true
