@@ -7,7 +7,9 @@ node("Node-2") {
      }
 
      stage("Preparing Environment"){
-        sh('ansible-playbook prepare_all.yml -i /etc/ansible/hosts -l node1 -f 1')
+       dir("$WORKSPACE/BuildingEnvPlaybook"){
+          sh('ansible-playbook testcafe.yml -i /etc/ansible/hosts -l node1 -f 1')
+       }
      }
         
      stage("Unit and Coverage Test"){ 
