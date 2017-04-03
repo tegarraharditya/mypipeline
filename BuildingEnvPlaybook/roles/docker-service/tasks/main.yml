@@ -22,7 +22,7 @@
                POSTGRES_DB: sonar
       become: true
 
-    - name: Launch the docker container mysonar
+    - name: Launch the docker container mysonarqube
       docker_container:
           name: mysonar
           image: sonarqube
