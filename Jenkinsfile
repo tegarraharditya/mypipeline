@@ -9,6 +9,7 @@ node("Node-1") {
      stage("Preparing Environment"){
        dir("$WORKSPACE/BuildingEnvPlaybook"){
           sh('ansible-playbook docker-env.yml -i inventories/develop')
+          sh('ansible-playbook docker-service.yml -i inventories/develop') 
        }
      }
         
@@ -29,9 +30,6 @@ node("Node-1") {
         echo 'Push to Node-1 instances'
         echo 'Archive to Current Dir'
         archiveArtifacts artifacts: "**/projects/**", fingerprint: true
-        dir("$WORKSPACE/BuildingEnvPlaybook"){
-           sh('ansible-playbook docker-service.yml -i inventories/develop')  
-        }
      }
 
 }
