@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-node("Node-2") {
+node("Node-1") {
  
      stage("Preparing Repositories"){
         checkout scm
