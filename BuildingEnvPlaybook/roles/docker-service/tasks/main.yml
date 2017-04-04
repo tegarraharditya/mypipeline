@@ -36,3 +36,16 @@
                SONARQUBE_JDBC_USERNAME: "sonar"
                SONARQUBE_JDBC_PASSWORD: "sonar123.,"
       become: true
+
+
+    - name: Launch Artifactory
+      docker_container:
+        name: myartifactory
+        image: tegarraharditya/artifactory
+        state: started
+        detach: true
+        published_ports:
+              - 18081:8081
+      become: true
+
+

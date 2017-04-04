@@ -22,7 +22,7 @@ node("Node-1") {
      }
 
      stage("Functional Test"){
-        sh ('cd $WORKSPACE')
+        sh ("cd $WORKSPACE")
         sh ('xvfb-run -a testcafe chrome test.js -')
      }
 
@@ -30,6 +30,15 @@ node("Node-1") {
         echo 'Push to Node-1 instances'
         echo 'Archive to Current Dir'
         archiveArtifacts artifacts: "**/projects/**", fingerprint: true
+        publishHTML (target: [
+                          allowMissing: false,
+                          alwaysLinkToLastBuild: false,
+                          keepAll: true,
+                          reportDir: "$WORKSPACE/projects/languages/java/gradle/java-gradle-simple/build/reports/tests",
+                          reportFiles: 'index.html',
+                          reportName: "Unit-Test-Report"
+                     ]
+        )
      }
 
 }
