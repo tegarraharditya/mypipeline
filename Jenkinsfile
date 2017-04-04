@@ -23,7 +23,7 @@ node("Node-1") {
 
      stage("Functional Test"){
         sh ("cd $WORKSPACE")
-        sh ('xvfb-run -a testcafe chrome test.js -')
+        sh ('xvfb-run -a testcafe chrome test.js -r xunit > reports/test_report.xml')
      }
 
      stage("Run Service"){
@@ -39,6 +39,9 @@ node("Node-1") {
                           reportName: "Unit-Test-Report"
                      ]
         )
+        step([$class: 'XUnitBuilder',
+                thresholds: [[$class: 'FailedThreshold', unstableThreshold: '1']],
+                tools: [[$class: 'JUnitType', pattern: 'reports/**']]])
      }
 
 }
