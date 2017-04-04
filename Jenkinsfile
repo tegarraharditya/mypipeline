@@ -39,10 +39,7 @@ node("Node-1") {
                           reportName: "Unit-Test-Report"
                      ]
         )
-        junit keepLongStdio: true, testResults: '$WORKSPACE/reports/*.xml'
-        step([$class: 'XUnitBuilder',
-                thresholds: [[$class: 'FailedThreshold', unstableThreshold: '1']],
-                tools: [[$class: 'JUnitType', pattern: 'reports/**']]])
+       
      }
 
 }
