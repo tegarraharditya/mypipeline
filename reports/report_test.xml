@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite name="TestCafe Tests: Chrome 57.0.2987 / Linux 0.0.0" tests="1" failures="0" skipped="0" errors="0" time="4.51" timestamp="Tue, 04 Apr 2017 09:18:56 GMT" >
-  <testcase classname="Use build-in assertions" name="Use different assertion types" time="4.505">
+<testsuite name="TestCafe Tests: Chrome 57.0.2987 / Linux 0.0.0" tests="1" failures="0" skipped="0" errors="0" time="3.741" timestamp="Tue, 04 Apr 2017 08:58:37 GMT" >
+  <testcase classname="Use build-in assertions" name="Use different assertion types" time="3.737">
   </testcase>
 </testsuite>

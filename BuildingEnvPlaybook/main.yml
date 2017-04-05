@@ -1,5 +1,4 @@
 ---
 - hosts: docker
   roles:
-  - role: docker
-  - role: testcafe
+  - role: nodejs

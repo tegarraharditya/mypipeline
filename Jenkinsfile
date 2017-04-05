@@ -22,8 +22,10 @@ node("Node-1") {
      }
 
      stage("Functional Test"){
-        sh ("cd $WORKSPACE")
-        sh ('xvfb-run -a testcafe chrome test.js -r xunit > reports/report_test.xml')
+        dir ("cd $WORKSPACE"){
+          sh ('xvfb-run -a testcafe chrome test.js -r xunit > reports/report_test.xml')
+          sh ('junit-viewer --results=reports/ --save=reports/report_test.html')
+        }
      }
 
      stage("Run Service"){
@@ -37,6 +39,15 @@ node("Node-1") {
                           reportDir: "$WORKSPACE/projects/languages/java/gradle/java-gradle-simple/build/reports/tests",
                           reportFiles: 'index.html',
                           reportName: "Unit-Test-Report"
+                     ]
+        )
+        publishHTML (target: [
+                          allowMissing: false,
+                          alwaysLinkToLastBuild: false,
+                          keepAll: true,
+                          reportDir: "$WORKSPACE/reports",
+                          reportFiles: 'report_test.html',
+                          reportName: "Test Cafe Report"
                      ]
         )
         step([$class: 'XUnitBuilder',
