@@ -9,3 +9,13 @@
    shell: npm install -g testcafe
    when: "'not found' in installed_testcafe.stderr"
    become: true
+
+ - name: Check the junit-viewer installation
+   shell: junit-viewer
+   ignore_errors: True
+   register: installed_junitviewer
+
+ - name: Install junit-viewer
+   shell: npm install -g junit-viewer
+   when: "'not found' in installed_junitviewer.stderr"
+   become: true
