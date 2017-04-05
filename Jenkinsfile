@@ -47,7 +47,7 @@ node("Node-1") {
                           keepAll: true,
                           reportDir: "$WORKSPACE/reports",
                           reportFiles: 'report_test.html',
-                          reportName: "Test-Cafe-Report"
+                          reportName: 'Functional-Test-Report'
                      ]
         )
         step([$class: 'XUnitBuilder',
