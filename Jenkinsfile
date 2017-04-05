@@ -36,7 +36,7 @@ node("Node-1") {
                           allowMissing: false,
                           alwaysLinkToLastBuild: false,
                           keepAll: true,
-                          reportDir: "$WORKSPACE/projects/languages/java/gradle/java-gradle-simple/target/allure-report",
+                          reportDir: "$WORKSPACE/projects/languages/java/gradle/java-gradle-simple/build/reports/tests",
                           reportFiles: 'index.html',
                           reportName: "Unit-Test-Report"
                      ]
