@@ -10,6 +10,7 @@ node("Node-1") {
        dir("$WORKSPACE/BuildingEnvPlaybook"){
           sh('ansible-playbook docker-env.yml -i inventories/develop')
           sh('ansible-playbook docker-service.yml -i inventories/develop') 
+          sh('allure')
        }
      }
         
