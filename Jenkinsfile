@@ -50,6 +50,12 @@ node("Node-1") {
                           reportName: 'Functional-Test-Report'
                      ]
         )
+        allure([
+                includeProperties: false, jdk: '', 
+                properties: [], 
+                reportBuildPolicy: 'ALWAYS', 
+                results: [[path: '$WORKSPACE/target/allure-results']]
+              ])
         step([$class: 'XUnitBuilder',
                 thresholds: [[$class: 'FailedThreshold', unstableThreshold: '1']],
                 tools: [[$class: 'JUnitType', pattern: 'reports/**']]])

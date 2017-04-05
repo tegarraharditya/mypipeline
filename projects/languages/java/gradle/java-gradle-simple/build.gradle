@@ -6,6 +6,7 @@ buildscript {
     dependencies {
         //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
+        classpath 'ru.d10xa:gradle-allure-plugin:0.5.2'
     }
 }
 
@@ -17,7 +18,29 @@ plugins {
 
 allprojects {
     apply plugin: "com.jfrog.artifactory"
+    apply plugin: 'ru.d10xa.allure'
 }
+
+configurations {
+    agent
+}
+
+allure {
+    aspectjweaver = true
+    testNG = true
+    allureResultsDir = "${projectDir}/target/allure-results"
+    allureReportDir = "${projectDir}/target/allure-report"
+    allureVersion = "${allureVersion}"
+    aspectjVersion = "${aspectjVersion}"
+    clean = true
+}
+
+dependencies {
+    agent "org.aspectj:aspectjweaver:${aspectjVersion}"
+    testCompile "ru.yandex.qatools.allure:allure-testng-adaptor:${allureVersion}"
+    testCompile 'org.testng:testng:6.9.10'
+}
+
 
 task customZip(type: Zip) {
     from 'src/'
@@ -68,12 +91,15 @@ allprojects {
   version = "$baseVersion" + (snapshotVersion ? "-SNAPSHOT" : "")
 }
 
-test {
-  ignoreFailures = true
+test.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
 
-dependencies {
-    testCompile 'junit:junit:4.12'
+test {
+  ignoreFailures = true
+  useTestNG() {
+//        suiteXmlFiles << new File(rootDir, "testng.xml") //This is how to add custom testng.xml
+  }
 }
 
 repositories {
@@ -86,3 +112,5 @@ repositories {
     }
   }
 }
+
+tasks.withType(Test)*.finalizedBy allureReport
