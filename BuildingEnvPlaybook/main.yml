@@ -1,4 +1,7 @@
 ---
 - hosts: docker
   roles:
+  - role: docker
+  - role: docker-service
   - role: nodejs
+  - role: node-service

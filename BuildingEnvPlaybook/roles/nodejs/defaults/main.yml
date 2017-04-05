@@ -1,6 +1,0 @@
----
-# default file for nodejs
-
-nodejs_version: "6.x"
-nodejs_dir: "/usr/bin/nodejs"
-nodejs_link: "/usr/bin/node"
