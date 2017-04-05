@@ -51,7 +51,7 @@ node("Node-1") {
                           reportName: 'Functional-Test-Report'
                      ]
         )
-        
+        allure([includeProperties: false, jdk: 'java8', properties: [], reportBuildPolicy: 'ALWAYS', results: [[path: '$WORKSPACE/projects/languages/java/gradle/java-gradle-simple/target/allure-results']]])
         step([$class: 'XUnitBuilder',
                 thresholds: [[$class: 'FailedThreshold', unstableThreshold: '1']],
                 tools: [[$class: 'JUnitType', pattern: 'reports/**']]])
