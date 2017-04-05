@@ -22,7 +22,7 @@ node("Node-1") {
      }
 
      stage("Functional Test"){
-        dir ("cd $WORKSPACE"){
+        dir ("$WORKSPACE"){
           sh ('xvfb-run -a testcafe chrome test.js -r xunit > reports/report_test.xml')
           sh ('junit-viewer --results=reports/ --save=reports/report_test.html')
         }
