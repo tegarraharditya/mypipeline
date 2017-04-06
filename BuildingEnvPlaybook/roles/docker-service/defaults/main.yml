@@ -1,0 +1,12 @@
+---
+remote_user: tegar.raharditya
+postgres_ports: 5432:5432
+postgres_user: sonar
+postgres_pass: sonar123.,
+postgres_db: sonar
+sonar_port_ext: 9000:9000
+sonar_port_int: 9092:9092
+sonar_jdbc_url: jdbc:postgresql://172.29.0.1:5432/sonar
+sonar_user: sonar
+sonar_pass: sonar123.,
+artifactory_port: 18081:8081

@@ -1,0 +1,23 @@
+---
+# tasks file for pip
+ 
+  - name: install pip
+    apt:
+      name: python-pip
+      cache_valid_time: "{{ apt_cache_valid_time|default(omit) }}"
+      install_recommends: no
+      state: latest
+      update_cache: yes
+    become: yes
+    become_method: sudo
+
+  - name: install certain python modules for docker
+    pip:
+      name: "{{ item.name }}"
+      version: "{{ item.version }}"
+      state: present
+    with_items:
+      - { name: docker, version: 2.0.0 }
+      - { name: docker-py, version: 1.10.6 }
+    become: true
+
